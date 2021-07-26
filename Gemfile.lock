@@ -197,7 +197,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rmagick (4.2.2)
     ruby_dep (1.5.0)
     rubyzip (2.3.2)
     sass (3.7.4)
@@ -297,7 +296,6 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.6)
   rails4-autocomplete (~> 1.1.1)
-  rmagick
   rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
