@@ -1,0 +1,27 @@
+<%= simple_form_for '', method: 'get' do |f| %>
+  <div class="form-group">
+    <div class="supplier form-group ">
+      <%= f.input :supplier_id, as: :hidden  %>
+      <%= f.input :supplier_name, as: :autocomplete, label: false, required: false, 
+        url: autocomplete_supplier_name_articles_path,
+        placeholder: "Ingrese Proveedor",
+        input_html: {'data-id-element' => '#_supplier_id', class: 'form-control '}
+      %>
+  </div>
+  <div class="articulox form-group">
+    <%= f.input( :name, label: false, required: false, input_html: {
+      class: 'form-control ',
+      placeholder: 'Ingrese producto',
+      data: {'autocomplete-field' => true,
+             'autocomplete-for' => '#_article_id',
+             'autocomplete-url' => articles_path(format: :json)
+    } 
+    }) %>
+  <%= f.input :article_id, as: :hidden%>
+
+  </div>
+  <div class=" form-group ">
+    <%= f.submit "Buscar", class: 'btn btn-primary'  %>
+  </div> 
+  </div>
+      <% end %>

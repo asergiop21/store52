@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Store</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <% if current_user.role == 'admin' %>
+          <li class="nav-item">
+            <%= link_to "Clientes", customers_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Articulos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Articulos", articles_path, class: "dropdown-item" %></li>
+          </ul>
+        </li>
+        <%  if current_user.role == 'admin' %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Configuracion
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Stock", invoice_stocks_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Proveedor", suppliers_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Remitos", invoices_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Categorias", categories_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Usuarios", users_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Vencimientos", due_date_articles_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Importar Lista", import_path, class: "dropdown-item" %></li>
+              <li><%= link_to "Cantidad Minima", stock_path, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% end %>
+        <li><%= link_to "Remitos", new_invoice_path, class: "dropdown-item" %></li>
+        <li><%= link_to "Caja Diaria", accounting_records_path, class: "dropdown-item" %></li>
+      </ul>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li><%= link_to current_user.email, edit_user_path(current_user), class: "nav-link" %></li>
+        <li><%= link_to "Cerrar Session", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,9 @@
+
+      <%= form_tag import_articles_path, multipart: true do %>
+        <div>
+          <%= file_field_tag :file, class: "import hidden-phone hidden-tablet" %>
+          <div>
+            <%= submit_tag "Import Archivo", class: "btn btn-primary hidden-phone hidden-tablet" %>
+          </div>
+        </div>
+      <% end %>

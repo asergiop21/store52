@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+      <%= link_to 'Nuevo Articulo', new_article_path %>
+        <div>
+          <% if flash[:error] %>
+            <li class="alert alert-error"><%= flash[:error]  %></li>
+          <% end %>
+          <% if notice %>
+            <li class="alert alert-success"><%= notice  %></li>
+          <% end %>
+        </div>
+        <h1>Listado de Categorias</h1>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Total</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @categories.each do |category| %>
+              <tr>
+                <td><%= category.id %></td>
+                <td><%= category.name %></td>
+                <td><%= category.price_total%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <br>
+
+        <%= link_to 'Nueva Categoria', new_category_path %>
+
+      </div>
+  </div>
+</div>
+</div>

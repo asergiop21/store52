@@ -1,0 +1,21 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 form-group">
+      <%= form_tag import_file_articles_path, multipart: true do %>
+
+        <%= file_field_tag :file, class: "import" %>
+        <%= submit_tag "Import Archivo", class: "btn btn-primary" %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<br>

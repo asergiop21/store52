@@ -1,0 +1,55 @@
+<div class="container-fluid cfnav">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Menu de Navegacion</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+    </div>
+    <div class="col-sm-offset-2 col-md-8 col-md-offset-3">
+      <h3>REMITO</h3>
+
+      <b>Cliente:</b>
+      <%=   @invoice.customer.name + " " +  @invoice.customer.lastname unless @invoice.customer_id.nil? %>
+
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th class=col-sm-offset-2>Cantidad</th>
+            <th class=col-sm-offset-10>Articulo</th>
+            <th>Precio Unit</th>
+            <th>Precio Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%  @invoice.orders.each do |order|%>
+            <tr>
+              <td><h4><%= order.quantity%></h4></td>
+              <td><h4><%= order.article.name %></h4></td>
+              <td><h4><%= order.price_unit%></h4></td>
+              <td><h4><%= order.price_total%></h4></td>
+            </tr>
+          <%end %>
+        </tbody>
+      </table>
+
+
+
+      <div class="col_md_12">
+        <b><h3>Precio total: $</b>
+        <%= @invoice.price_total %></h3>
+      </div>
+
+      <div>
+        <h1> <a href="" id="printOut" class="btn btn-primary hidden-print">Imprimir</a></h1>
+      </div>
+    </div>
+  </div>
+</div>

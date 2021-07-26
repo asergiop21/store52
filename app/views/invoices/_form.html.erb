@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <%= simple_form_for @invoice, defaults: {input_html:{class: 'form-inline'}} do |f| %>
+      <div class="customer ">
+        <%= f.input :customer_id, as: :hidden %>
+        <%= f.input :customer_name, as: :autocomplete, label: false,
+          url: autocomplete_customer_name_invoices_path,
+          placeholder: 'Ingrese el cliente',
+          input_html: {'data-id-element' => '#invoice_customer_id', class: 'form-control'}
+        %>
+      <%= simple_form_for '', method: 'get' do |s| %>
+        <div class="supplier">
+          <%= s.input :supplier_id, as: :hidden  %>
+          <%= s.input :supplier_name, as: :autocomplete, label: false,
+            placeholder: 'Ingrese el Proveedor',
+            url: autocomplete_supplier_name_articles_path,
+            input_html: {'data-id-element' => '#_supplier_id', class: 'form-control'},
+            required: false
+          %>
+      </div>
+    <% end %>
+
+    <div class="form-group line1">
+
+      <div class="hidden-phone col-sm-1 col-md-1 col-lg-1 bold">#</div>
+      <div class="hidden-phone col-sm-3 col-md-3 col-lg-3 bold"> Producto</div>
+      <div class="hidden-phone col-sm-2 col-md-2 col-lg-2"> Cantidad</div>
+      <div class="hidden-phone col-sm-1 col-md-1 col-lg-1"> Bulto</div>
+      <div class="hidden-phone col-sm-2 col-md-2 col-lg-2"> Precio U.</div>
+      <div class="hidden-phone col-sm-2 col-md-2 col-lg-3"> Precio T.</div>
+
+      <%= f.fields_for :orders, method: 'get' do |ph| %>
+       
+
+        <%=render 'orders', f: ph  %>
+      <% end %>
+
+      <%= link_to_add_fields 'Agregar  Producto' , f , :orders, class: "add_fields col-md-12" %>
+
+      <%= render "total", f: f %>
+
+      <div class="form-actions col-md-12">
+        <%= f.button :submit , class: 'btn btn-primary' , data: {disable_with: "Enviando"} %>
+      </div>
+    </div>
+  </div>
+    <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,61 @@
+#root = "/var/www/project/current"
+#working_directory  root
+#pid "/tmp/pids/unicorn.pid"
+
+
+#shared_dir = "#{root}/shared"
+#listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
+
+#stderr_path "#{shared_dir}/log/unicorn.log"
+#stdout_path "#{shared_dir}/log/unicorn.log"
+
+#pid "#{shared_dir}/pids/unicorn.pid"
+#listen "/tmp/pids/unicorn.project.sock"
+#worker_processes 2
+#timeout 600
+
+#before_exec do |_|
+#    ENV["BUNDLE_GEMFILE"] = File.join(root, 'Gemfile')
+#end
+#
+
+ #set path to application
+# app_dir = File.expand_path("../..", __FILE__)
+# shared_dir = "#{app_dir}/shared"
+#working_directory app_dir
+
+ # Set unicorn options
+# worker_processes 2
+# preload_app true
+#timeout 30
+
+ # Set up socket location
+ #listen "#{shared_dir}/sockets/unicorn.sock", :backlog => 64
+
+ # Logging
+# stderr_path "#{shared_dir}/log/unicorn.stderr.log"
+# stdout_path "#{shared_dir}/log/unicorn.stdout.log"
+
+ # Set master PID location
+#pid "#{shared_dir}/pids/unicorn.pid"
+##Server LOCAL
+# root = "/var/www/project/current"
+# working_directory  root
+# pid "/var/www/project/shared/pids/unicorn.pid"
+# stderr_path "#{root}/log/unicorn.log"
+# stdout_path "#{root}/log/unicorn.log"
+
+# listen "/tmp/unicorn.project.sock"
+# worker_processes 1
+# timeout 600
+
+
+root = "/opt/projectM/current"
+working_directory  root
+pid "/opt/projectM/shared/pids/unicorn.pid"
+stderr_path "#{root}/log/unicorn.log"
+stdout_path "#{root}/log/unicorn.log"
+
+listen "/opt/projectM/shared/sockets/unicorn.sock"
+worker_processes 2
+timeout 600

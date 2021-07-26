@@ -1,0 +1,18 @@
+<table>
+<tr>             
+<td>Nombre</td>
+<td>Precio Costo</td>
+<td>Porcentaje</td>
+<td>Preio Total</td>
+<td>Cantidad</td>
+</tr>
+<% @articles.each do |article| %>
+  <tr>  
+  <td><%= article.name %></td>
+  <td><%= article.price_cost %></td>
+  <td><%= article.percentaje %></td>
+  <td><%= article.price_total %></td>
+  <td><%= article.quantity %></td>
+  </tr> 
+<% end %>
+</table>

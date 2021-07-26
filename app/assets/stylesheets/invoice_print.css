@@ -1,0 +1,27 @@
+@media print {
+  @page { 
+    size: A5;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    word-spacing: 1px;
+    letter-spacing: 0.2px;
+    font: 9px Arial, Helvetica,"Lucida Grande", serif;
+    color: red;
+
+  }
+  
+
+
+  .navbar-header {
+    display: visible;
+  }
+
+  .navbar-toggle {
+    display: visible;
+  }
+  .cfnav {
+    display: none;
+  }
+}

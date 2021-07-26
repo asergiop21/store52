@@ -1,0 +1,17 @@
+<div class="col-sm-12 col-md-12">
+  <div class ="total_1">
+    <div class="col-xs-12 col-sm-offset-6 col-sm-6 col-md-offset-6 col-md-6">
+      <b class="hidden-phone col-sm-3 col-md-3"><h5>Subtotal: </h5></b>
+      <b class="col-xs-12 col-sm-8 col-md-8"><%= f.input :subtotal, label: false, :input_html=> {class: "form-control"}, readonly: true, as: :string, placeholder: "Subotal" %></b>
+    </div>
+
+    <div class="col-xs-12 col-sm-offset-6 col-sm-6 col-md-offset-6 col-md-6">
+      <b class="hidden-phone col-sm-3 col-md-3"><h5>Descuento:  </h5></b>
+      <b class="col-xs-12 col-sm-8 col-md-8"><%= f.input :discount, label: false, :input_html=> {class: "form-control", value: f.object.discount || 0},  as: :string, placeholder: "Descuento" %></b>
+    </div>
+    <div class="col-xs-12col-sm-offset-6 col-sm-6 col-md-offset-6 col-md-6">
+      <b class="hidden-phone col-sm-3 col-md-3"><h5>Total:  </h5></b>
+      <b class="col-xs-12 col-sm-8 col-md-8"><%= f.input :price_total, label: false, :input_html=> {class: "form-control"}, readonly: true, as: :string, placeholder:"Total" %></b>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+
+<h2>Reporte Cantidad Minima Stock</h2>
+
+<table class="table">
+  <tr>
+    <th>Nombre</th>
+    <th>Cantidad Minima</th>
+    <th>Cantidad Actual</th>
+  </tr>
+
+
+  <% @stocks.each do |s| %>
+
+    <tr>
+      <td><%= s.name %></td>    
+      <td><%= s.minimum_stock %></td>
+      <td><%= s.quantity %></td>
+
+    <% end %>
+    </tr>
+</table>
+
+
+
+
+
