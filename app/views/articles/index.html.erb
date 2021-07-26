@@ -43,7 +43,6 @@
               <tbody>
                 <% @articles.each do |article| %>
                   <tr>
-                    <td><%= image_tag article.image.url(:small) %></td>
                     <td class="hidden-phone hidden-table"><%= article.id %></td>
                     <td><%= article.name %></td>
                     <td class="hidden-phone hidden-table"><%= article.supplier_id  if !article.supplier_id.nil?  %></td>

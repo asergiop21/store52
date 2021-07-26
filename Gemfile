@@ -41,7 +41,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'will_paginate'
 #gem 'bravo' #factura electronica
 gem 'paperclip'
-gem 'rmagick'
+#gem 'rmagick'
 gem 'paper_trail'
 #gem 'rb-readline'
 #gem 'public_suffix', '1.4.6'

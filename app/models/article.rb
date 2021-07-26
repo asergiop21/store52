@@ -2,10 +2,10 @@ class Article < ActiveRecord::Base
 
   include PgSearch
 
-  has_attached_file :image, styles: {medium: '200x200>', small: '100x100' , thumb:'48x48>'}
+#  has_attached_file :image, styles: {medium: '200x200>', small: '100x100' , thumb:'48x48>'}
   #  has_paper_trail
 
-  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+ # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
 
 =begin  pg_search_scope :con_nombre_barcode,
@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
 #
 #
 =end
-=begin 
+=begin
   pg_search_scope :con_nombre_barcode,
     :against => [:name, :barcode, :code_supplier],
     :using => {
@@ -67,7 +67,7 @@ class Article < ActiveRecord::Base
     belongs_to :category
     belongs_to :supplier
 
-    accepts_nested_attributes_for :deadlines, :allow_destroy => true 
+    accepts_nested_attributes_for :deadlines, :allow_destroy => true
 
     validates :name, presence: true, length: { minimum: 3}, on: [:new, :create]
     validates :price_cost, numericality: true, presence: true
@@ -109,7 +109,7 @@ class Article < ActiveRecord::Base
       insert_count = 0
       not_insert_count = 0
       others = {}
-      proccesed = 0  
+      proccesed = 0
       #CSV.foreach('/home/sergio/Escritorio/arti.csv', headers: true, :encoding => 'ISO-8859-1') do |row|
       spreadsheet = open_spreadsheet(file)
       #spreadsheet =  Roo::Spreadsheet.open(file, extension: :xls)
@@ -119,7 +119,7 @@ class Article < ActiveRecord::Base
         #CSV.foreach(file.path, headers: true, :encoding => 'ISO-8859-1') do |row|
 
         supplier = Supplier.where(name: row["supplier_name"] ).first_or_create
-        row["supplier_id"] = supplier.id 
+        row["supplier_id"] = supplier.id
         row['code_supplier']  = row['code_supplier'].gsub('/\s+/','_')
         row['code_supplier'] = row['code_supplier'].gsub('/\t+/','_')
         row['code_supplier'] = row['code_supplier'].gsub(' ','')
@@ -128,16 +128,16 @@ class Article < ActiveRecord::Base
 
         article = Article.where(code_supplier: row["code_supplier"], supplier_id: row["supplier_id"]).first_or_initialize
 
-        #article = find_by_articles_code_supplier(row["articles_code_supplier"]) 
+        #article = find_by_articles_code_supplier(row["articles_code_supplier"])
 
         @article = article
         @quantity = row["quantity"]
         if (@quantity == "  " || @quantity == nil)
-          row["quantity"] = 0		
+          row["quantity"] = 0
         end
 
         if (row["price_cost"] == "" || row["price_cost"] == nil)
-          row["price_cost"] = 0 
+          row["price_cost"] = 0
         end
         row['price_cost'] = row['price_cost'].gsub(',','.')
         row['price_total'] = row['price_total'].gsub(',','.')
@@ -146,10 +146,10 @@ class Article < ActiveRecord::Base
           @article.attributes = row.to_hash.slice('name', 'price_cost', 'code_supplier', 'price_total', 'percentaje', 'supplier_id', 'barcode')
         #@article.attributes = row.to_hash.slice(*row.to_hash.keys)
         proccesed += 1
-        if @article.save 
+        if @article.save
           insert_count += 1
         else
-          not_insert_count += 1 
+          not_insert_count += 1
           others[row["code_supplier"]] = row["name"]
         end
         @q = [proccesed, insert_count, not_insert_count, others]
