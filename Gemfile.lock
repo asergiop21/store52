@@ -150,12 +150,16 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    pdf-core (0.9.0)
     pg (1.2.3)
     pg_search (1.0.6)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
     popper_js (1.16.0)
+    prawn (2.4.0)
+      pdf-core (~> 0.9.0)
+      ttfunk (~> 1.7)
     public_suffix (4.0.6)
     puma (3.12.6)
     racc (1.5.2)
@@ -246,6 +250,7 @@ GEM
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    ttfunk (1.7.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -296,6 +301,7 @@ DEPENDENCIES
   paperclip
   pg
   pg_search (= 1.0.6)
+  prawn
   puma (~> 3.11)
   rails (~> 5.2.6)
   rails4-autocomplete (~> 1.1.1)
