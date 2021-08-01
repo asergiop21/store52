@@ -48,7 +48,8 @@ gem 'paper_trail'
 gem 'rubyzip'
 #gem 'nokogiri'
 gem 'sidekiq'
-gem 'unicorn'
+#gem 'kgio', '~> 1.3.1'
+gem 'unicorn', '5.7.0'
 gem 'unicorn-rails'
 
 group :development do
