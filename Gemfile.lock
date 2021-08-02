@@ -51,6 +51,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (10.2.5.1)
       execjs (> 0)
+    barby (0.6.8)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.6)
@@ -282,6 +283,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  barby
   bootsnap
   bootstrap (~> 4.3.1)
   byebug

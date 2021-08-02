@@ -37,7 +37,7 @@ gem 'jquery-ui-rails'
 gem 'bootstrap', '~> 4.3.1'
 #gem 'roo'
 gem 'prawn'
-#gem 'barby'
+gem 'barby'
 gem 'will_paginate'
 #gem 'bravo' #factura electronica
 gem 'paperclip'
