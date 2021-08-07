@@ -1,20 +1,27 @@
 # config valid only for Capistrano 3.1
-lock '3.4.0'
+lock '3.16.0'
 
-set :application, 'project'
-set :repo_url, 'git@bitbucket.org:asergiop21/montecaserosdo.git'
+set :application, 'store52'
+set :user, 'deployer'
+set :repo_url, 'git@github.com:asergiop21/store52.git'
+
+set :format, :pretty
+set :log_level, :info
+
+set :rbenv_type, :user
+set :rbenv_ruby, '2.7.3'
+set :branch, 'master'
+
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-#local 
+#local
 #set :deploy_to, '/var/www/project'
 #DO
 #set :deploy_to, '/opt/projectM'
 
-# Default value for :scm is :git
-set :scm, :git
 #:set :copy_cache, false
 #local
 # set :rbenv_ruby, '2.1.4'
@@ -31,10 +38,12 @@ set :scm, :git
 
 # Default value for :linked_files is []
 #set :linked_files, %w{config/database.yml}
-set :linked_files, %w{config/secrets.yml}
+#set :linked_files, %w{config/secrets.yml}
 
 # Default value for linked_dirs is []
- set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system }
+set :linked_dirs, %w{ log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads }
+#set :linked_dirs, %w{vendor/bundle }
+# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets }
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -42,34 +51,34 @@ set :linked_files, %w{config/secrets.yml}
 # Default value for keep_releases is 5
  set :keep_releases, 5
 
-namespace :deploy do
+ namespace :deploy do
 
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
+#   desc 'Restart application'
+#   task :restart do
+#     on roles(:app), in: :sequence, wait: 5 do
+#       # Your restart mechanism here, for example:
+#       # execute :touch, release_path.join('tmp/restart.txt')
+#     end
+#   end
 
-  after :publishing, :restart
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-       #  execute :rake, 'cache:clear'
-      # end
-    end
-  end
+#   after :publishing, :restart
+#   after :restart, :clear_cache do
+#     on roles(:web), in: :groups, limit: 3, wait: 10 do
+#       # Here we can do anything such as:
+#       # within release_path do
+#        #  execute :rake, 'cache:clear'
+#       # end
+#     end
+#   end
 
-  desc 'Runs rake db:seed'
-  task :seed => [:set_rails_env] do
-    on primary fetch(:migration_role) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          execute :rake, "db:seed"
-        end
-      end
-    end
-  end
-end
+#   desc 'Runs rake db:seed'
+#   task :seed => [:set_rails_env] do
+#     on primary fetch(:migration_role) do
+#       within release_path do
+#         with rails_env: fetch(:rails_env) do
+#           execute :rails, "db:seed"
+#         end
+#       end
+#     end
+#   end
+ end
