@@ -6,79 +6,14 @@ set :user, 'deployer'
 set :repo_url, 'git@github.com:asergiop21/store52.git'
 
 set :format, :pretty
-set :log_level, :info
+set :log_level, :debug
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.3'
 set :branch, 'master'
 
+set :keep_releases, 5
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+namespace :deploy do
 
-# Default deploy_to directory is /var/www/my_app
-#local
-#set :deploy_to, '/var/www/project'
-#DO
-#set :deploy_to, '/opt/projectM'
-
-#:set :copy_cache, false
-#local
-# set :rbenv_ruby, '2.1.4'
-#DO
-#set :rbenv_ruby, '2.2.1'
-# Default value for :format is :pretty
-# set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :linked_files is []
-#set :linked_files, %w{config/database.yml}
-#set :linked_files, %w{config/secrets.yml}
-
-# Default value for linked_dirs is []
-set :linked_dirs, %w{ log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads }
-#set :linked_dirs, %w{vendor/bundle }
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets }
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
- set :keep_releases, 5
-
- namespace :deploy do
-
-#   desc 'Restart application'
-#   task :restart do
-#     on roles(:app), in: :sequence, wait: 5 do
-#       # Your restart mechanism here, for example:
-#       # execute :touch, release_path.join('tmp/restart.txt')
-#     end
-#   end
-
-#   after :publishing, :restart
-#   after :restart, :clear_cache do
-#     on roles(:web), in: :groups, limit: 3, wait: 10 do
-#       # Here we can do anything such as:
-#       # within release_path do
-#        #  execute :rake, 'cache:clear'
-#       # end
-#     end
-#   end
-
-#   desc 'Runs rake db:seed'
-#   task :seed => [:set_rails_env] do
-#     on primary fetch(:migration_role) do
-#       within release_path do
-#         with rails_env: fetch(:rails_env) do
-#           execute :rails, "db:seed"
-#         end
-#       end
-#     end
-#   end
- end
+end

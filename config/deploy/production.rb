@@ -16,7 +16,7 @@ role :db,  %w{deployer@104.131.8.98}
 # used to set extended properties on the server.
 
 set :deploy_to, '/var/www/store52'
-server '104.131.8.98', user: 'deployer', roles: %w{web app}, my_property: :my_value, port: 22
+server '104.131.8.98', user: 'deployer', roles: %w{web app db}, port: 22
 
 # Custom SSH Options
 # ==================
