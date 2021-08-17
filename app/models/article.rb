@@ -40,7 +40,7 @@ class Article < ActiveRecord::Base
 =end
 
   #con_index_tsv
-
+#####sirve
   pg_search_scope :con_nombre_barcode,
     :against => [:name, :barcode, :code_supplier],
     :using => {
@@ -55,7 +55,7 @@ class Article < ActiveRecord::Base
     },
     :order_within_rank => "name  ASC"
     #         :ranked_by => ":tsearch"
-
+####finsirve
     #  scope :con_nombre_barcode, ->(nombre){where("articles.name ILIKE ? or barcode ILIKE ? or code_supplier ILIKE ?","%#{nombre}%", "#{nombre}%", "#{nombre}%").order(:name)}
     scope :con_nombre, ->(nombre){joins(:supplier).where("articles.name ILIKE ?", "%#{nombre}%") }
     scope :con_id, ->(id){ where('id = ?', "#{id}")}
@@ -106,31 +106,27 @@ class Article < ActiveRecord::Base
     end
 
     def self.import(file)
-      insert_count = 0
+      insert_count     = 0
       not_insert_count = 0
-      others = {}
-      proccesed = 0
-      #CSV.foreach('/home/sergio/Escritorio/arti.csv', headers: true, :encoding => 'ISO-8859-1') do |row|
-      spreadsheet = open_spreadsheet(file)
-      #spreadsheet =  Roo::Spreadsheet.open(file, extension: :xls)
-      header = spreadsheet.row(1)
-      (2..spreadsheet.last_row).each do |i|
-        row = Hash[[ header, spreadsheet.row(i)].transpose]
-        #CSV.foreach(file.path, headers: true, :encoding => 'ISO-8859-1') do |row|
+      others           = {}
+      proccesed        = 0
 
+      CSV.foreach(file.path, headers: true, encoding: 'ISO-8859-1') do |row|
         supplier = Supplier.where(name: row["supplier_name"] ).first_or_create
+
         row["supplier_id"] = supplier.id
         row['code_supplier']  = row['code_supplier'].gsub('/\s+/','_')
         row['code_supplier'] = row['code_supplier'].gsub('/\t+/','_')
         row['code_supplier'] = row['code_supplier'].gsub(' ','')
 
+        article = Article.where(code_supplier: row["code_supplier"], supplier_id: row["supplier_id"]).first
 
-
-        article = Article.where(code_supplier: row["code_supplier"], supplier_id: row["supplier_id"]).first_or_initialize
-
-        #article = find_by_articles_code_supplier(row["articles_code_supplier"])
+        if article.nil?
+          article = Article.new
+        end
 
         @article = article
+
         @quantity = row["quantity"]
         if (@quantity == "  " || @quantity == nil)
           row["quantity"] = 0
@@ -143,8 +139,9 @@ class Article < ActiveRecord::Base
         row['price_total'] = row['price_total'].gsub(',','.')
         row['percentaje'] = row['percentaje'].gsub(',','.')
 
-          @article.attributes = row.to_hash.slice('name', 'price_cost', 'code_supplier', 'price_total', 'percentaje', 'supplier_id', 'barcode')
-        #@article.attributes = row.to_hash.slice(*row.to_hash.keys)
+        @article.attributes = row.to_hash.slice('name', 'price_cost', 'code_supplier', 'price_total', 'percentaje', 'supplier_id', 'barcode')
+
+        byebug
         proccesed += 1
         if @article.save
           insert_count += 1
@@ -154,6 +151,7 @@ class Article < ActiveRecord::Base
         end
         @q = [proccesed, insert_count, not_insert_count, others]
       end
+
       @q
     end
 
