@@ -12,6 +12,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.7.3'
 set :branch, 'master'
 
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
 set :keep_releases, 5
 
 namespace :deploy do
