@@ -6,7 +6,7 @@ set :user, 'deployer'
 set :repo_url, 'git@github.com:asergiop21/store52.git'
 
 set :format, :pretty
-set :log_level, :debug
+set :log_level, :info
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.3'
