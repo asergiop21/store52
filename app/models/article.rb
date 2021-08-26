@@ -53,8 +53,8 @@ class Article < ActiveRecord::Base
         :normalization => 0
       }
     },
-    :order_within_rank => "name  ASC"
-    #         :ranked_by => ":tsearch"
+    :order_within_rank => "name  ASC",
+             :ranked_by => ":tsearch"
 ####finsirve
     #  scope :con_nombre_barcode, ->(nombre){where("articles.name ILIKE ? or barcode ILIKE ? or code_supplier ILIKE ?","%#{nombre}%", "#{nombre}%", "#{nombre}%").order(:name)}
     scope :con_nombre, ->(nombre){joins(:supplier).where("articles.name ILIKE ?", "%#{nombre}%") }
@@ -141,7 +141,6 @@ class Article < ActiveRecord::Base
 
         @article.attributes = row.to_hash.slice('name', 'price_cost', 'code_supplier', 'price_total', 'percentaje', 'supplier_id', 'barcode')
 
-        byebug
         proccesed += 1
         if @article.save
           insert_count += 1

@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @articles = Article.where(supplier_id: params[:supplier_id]) if params[:supplier_id].present?
     @articles = @articles.where( id: params[:article_id]) if params[:article_id].present?
-    @articles = @articles.con_nombre(params[:q]) if params[:q].present?
+    @articles = @articles.con_nombre_barcode(params[:q]) if params[:q].present?
     @articles = @articles.paginate(page: params[:page], per_page: 20)
 
     respond_to do |format|

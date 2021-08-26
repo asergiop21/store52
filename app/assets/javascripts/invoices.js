@@ -1,6 +1,4 @@
 $(document).ready(function(){
-  $.fn.datepicker.defaults.format = "yyyy/mm/dd";
-  $.fn.datepicker.defaults.language = "es";
   var nowTemp = new Date();
   var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
@@ -18,7 +16,7 @@ $(document).ready(function(){
   }).data('datepicker');
   var checkout = $('#q_to').datepicker({
     onRender: function(date) {
-      return date.valueOf(); 
+      return date.valueOf();
     }
   }).on('changeDate', function(ev) {
     checkout.hide();

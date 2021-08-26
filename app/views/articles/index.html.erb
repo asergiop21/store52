@@ -1,18 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-
-      <section class="search-form ">
-
+      <section class="search-form">
         <div class="col-md-12">
           <h2 class="col-md-6" >Listado de Articulos -  [ #<%=@articles.count  %> ] </h2>
           <%= link_to 'Nuevo Articulo', new_article_path, class: " btn btn-success col-md-3 pull-right btn-responsive" %>
         </div>
-
         <%= render "filter" %>
-
       </section>
-
       <div>
         <% if flash[:error] %>
           <div class="alert alert-error "><%= flash[:error]  %></div>
@@ -31,7 +26,7 @@
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                 <th></th>
+                  <th></th>
                   <th class="hidden-phone hidden-table">#</th>
                   <th><%= Article.human_attribute_name(:name)%></th>
                   <th class="hidden-phone hidden-table"><%= Article.human_attribute_name(:supplier)%></th>

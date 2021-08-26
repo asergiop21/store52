@@ -13,10 +13,10 @@ $(document).ready(function(){
           dataType: 'json', data: {supplier_id: sup ,  q: request.term },
           success: function(data) {
             response(
-                $.map(data, function(item) {
-                  return { label:  item.label, item: item};
-                })
-                );
+              $.map(data, function(item) {
+                return {label:  item.label, item: item};
+              })
+            );
           },
         });
       },
@@ -32,12 +32,12 @@ $(document).ready(function(){
     var charCode = (evt.which) ? evt.which : event.keyCode;
     if((value.indexOf('.')!=-1) && (charCode != 45 && (charCode < 48 || charCode > 57))){
       return false;
-    }    
+    }
     else if(charCode != 45 && (charCode != 46 || $(this).val().indexOf('.') != -1) && (charCode < 48 || charCode > 57)){
       return false;
     }
     return true;
-  }) 
+  })
 
 
   $('#article_percentaje, #article_price_cost, #article_iva ').on('blur', function(){
@@ -64,30 +64,24 @@ $(document).ready(function(){
       iva = 0;
     }
 
-      percentaje = parseFloat(percentaje_gain) + parseFloat(iva);
+    percentaje = parseFloat(percentaje_gain) + parseFloat(iva);
 
     if (price != "")
     {
-    price_total = ((parseFloat(price) * parseFloat(percentaje))/100) + parseFloat(price);
+      price_total = ((parseFloat(price) * parseFloat(percentaje))/100) + parseFloat(price);
 
       console.log(isNaN(price_total));
-      
-    if ( isNaN(price_total) || price_total == "")
-    {
-      $('#article_price_total').val(0);
-    }
-    else{
-      $('#article_price_total').val(price_total.toFixed(2));
-    }
+
+      if ( isNaN(price_total) || price_total == "")
+      {
+        $('#article_price_total').val(0);
+      }
+      else{
+        $('#article_price_total').val(price_total.toFixed(2));
+      }
     }
 
     $(this).val(parseFloat($(this).val()).toFixed(2));
   });
-
-  $.fn.datepicker.defaults.format = "dd/mm/yyyy";
-  $.fn.datepicker.defaults.language = "es";
-
-  $('#article_due_date').datepicker();
-
 
 });

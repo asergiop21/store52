@@ -1,4 +1,4 @@
-<div class="col-md-12"> 
+<div class="col-md-12">
   <div class="form-group">
 
       <%= render :partial => 'filters_bar' %>
@@ -24,7 +24,7 @@
           <% @invoices.each do |invoice| %>
             <tr>
             <td><%= invoice.id %></td>
-            <td><%= l invoice.created_at, format: :submitted %></td>
+            <td><%= l invoice.created_at, format: '%d %B' %></td>
             <td><%= number_to_currency(invoice.price_total) %></td>
             <td><%= link_to 'Show', invoice %></td>
             <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
@@ -43,8 +43,8 @@
           <h4>Subtotal de Caja: <%= number_to_currency(@price_total) %></h3>
           <h4>Total de Caja: <%= number_to_currency(@caja) %></h3>
         </div>
-      </div>                
-    </div>                
-  </div>                
-</div>                
+      </div>
+    </div>
+  </div>
+</div>
 <br>
