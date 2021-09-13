@@ -1,40 +1,43 @@
 <span class="line2 form-group clearfix">
-<div class="col-md-12 line3">
-  <div class="col-md-3">
-    <%= f.input :article, label: false,  input_html: {
-      class: 'form-control ',
-      data: {'autocomplete-field' => true,
-             'autocomplete-for' => '#invoice_stock_stocks_#{id}_article_id',
-             'autocomplete-url' => articles_path(format: :json)
-    } 
-    } %>
-  <%= f.input :article_id, :input_html => {class: 'form-control'} , as: :hidden,  label: false%>
+    <div class="col">
+  <div class="row">
 
-  </div>
-  <div class=" col-md-1">
-    <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control  quantity "}   %>
-  </div>
+      <div class="col-md-3 articulox">
+        <%= f.input :article, label: false,  input_html: {
+          class: 'form-control ',
+          data: {'autocomplete-field': true,
+                 'autocomplete-for': '.article_id',
+                 'autocomplete-url': articles_path(format: :json)
+          }
+        } %>
+      <%= f.input :article_id, as: :hidden, :input_html => {class: 'form-control article_id'}, label: false%>
 
-  <div class="col-md-1">
-    <%= f.input :iva, label: false,  :input_html => {:class => "form-control  iva "} %>
-  </div>
+      </div>
+      <div class=" col-md-1">
+        <%= f.input :quantity, label: false, as: :string, :input_html => {:class => "form-control  quantity "}   %>
+      </div>
 
-  <div class="col-md-1">
-    <%= f.input :barcode, label: false,  :input_html => {:class => "form-control  iva "} %>
-  </div>
-  <div class=" col-md-2">
-    <%= f.input :price_cost, label: false, as: :string, :input_html => {:class => "form-control price_cost_stock "}  %>
-  </div>
+      <div class="col-md-1">
+        <%= f.input :iva, label: false,  :input_html => {:class => "form-control  iva "} %>
+      </div>
 
-  <div class="col-md-2">
-    <%= f.input :price_total, label: false, as: :string, :input_html => {:class=> "form-control price_subtotal"} %>
+      <div class="col-md-1">
+        <%= f.input :barcode, label: false,  :input_html => {:class => "form-control  iva "} %>
+      </div>
+      <div class=" col-md-2">
+        <%= f.input :price_cost, label: false, as: :string, :input_html => {:class => "form-control price_cost_stock "}  %>
+      </div>
+
+      <div class="col-md-2">
+        <%= f.input :price_total, label: false, as: :string, :input_html => {:class=> "form-control price_subtotal"} %>
+      </div>
+      <div class="col-md-1">
+        <%=f.input :quantity_labels, label: false,  :input_html => {:class=> "form-control qty_labels"}, required: true %>
+      </div>
+      <%= f.hidden_field :_destroy %>
+      <div class="col-xs-12 col-sm-1 col-md-1">
+        <%= link_to "X", "#", class: "remove_fields_stocks btn btn-danger" %>
+      </div>
+    </div>
   </div>
-  <div class="col-md-1">
-    <%=f.input :quantity_labels, label: false,  :input_html => {:class=> "form-control qty_labels"}, required: true %>
-  </div>
-  <%= f.hidden_field :_destroy %>
-  <div class="col-xs-12 col-sm-1 col-md-1">
-    <%= link_to "X", "#", class: "remove_fields_stocks btn btn-danger" %>
-</div>
-</div>
 </span>
