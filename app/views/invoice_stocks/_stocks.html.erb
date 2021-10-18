@@ -1,12 +1,11 @@
-<span class="line2 form-group clearfix">
-    <div class="col">
+<span class="line2 form-group">
   <div class="row">
 
-      <div class="col-md-3 articulox">
-        <%= f.input :article, label: false,  input_html: {
-          class: 'form-control ',
+      <div class="col-md-3 line3_2">
+        <%= f.input :article, label: false, input_html: {
+          class: 'form-control line3_2',
           data: {'autocomplete-field': true,
-                 'autocomplete-for': '.article_id',
+                'autocomplete-for' => '#invoice_stock_stocks_attributes_#{id}_article_id',
                  'autocomplete-url': articles_path(format: :json)
           }
         } %>
@@ -39,5 +38,4 @@
         <%= link_to "X", "#", class: "remove_fields_stocks btn btn-danger" %>
       </div>
     </div>
-  </div>
 </span>

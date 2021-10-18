@@ -31,12 +31,11 @@ $(document).ready(function(){
       event.preventDefault();
   });
 
-  $('div.line3').on('keydown', '[data-autocomplete-for]', function(event){
+  $(document).on('keydown', '.line3_2', function(event){
     if (event.which == 13 ){
       //console.log(event.which);
       event.preventDefault();
     }
-
     var input = $(this);
     input.autocomplete({
       source: function(request, response) {
@@ -90,7 +89,7 @@ $(document).ready(function(){
     $(field_price_subtotal).val(calculo_subtotal_stock($(field_price_cost).val(), $(field_quantity).val(), $(field_iva).val()).toFixed(2) );
     $('#invoice_stock_price_total').val(calculo_total_stock().toFixed(2));
 
-  }); 
+  });
 
   $(document).on('focus click', function(){
 
